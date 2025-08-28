@@ -5,6 +5,7 @@ import WavesHero from '@/components/nurui/waves-hero';
 import HomeLayouts from '@/Layouts/HomeLayouts';
 import AddMaterials from '@/Pages/AddMaterials';
 import Home from '@/Pages/Home';
+import ShowPdf from '@/Pages/ShowPdf';
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/home/addMaterials',
                 element: <AddMaterials></AddMaterials>
+            },
+            {
+                path: '/home/pdfs/:semester/:department/:subject',
+                element: <ShowPdf></ShowPdf>
             }
         ]
     }
