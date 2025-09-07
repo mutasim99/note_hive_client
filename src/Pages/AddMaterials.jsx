@@ -63,7 +63,7 @@ const AddMaterials = () => {
 
     }
     return (
-        <div className='pt-22'>
+        <div>
             <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-50 via-emerald-100 to-green-200 px-4  dark:from-gray-800 dark:via-gray-900 dark:to-black
             transition-colors duration-1000">
                 <form

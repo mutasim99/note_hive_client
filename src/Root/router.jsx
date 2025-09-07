@@ -50,12 +50,6 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: '/home/addMaterials',
-                element: <PrivateRoute>
-                    <AddMaterials></AddMaterials>
-                </PrivateRoute>
-            },
-            {
                 path: '/home/pdfs/:semester/:department/:subject',
                 element: <PrivateRoute>
                     <ShowPdf></ShowPdf>
@@ -86,6 +80,10 @@ const router = createBrowserRouter([
                         <ManageUsers></ManageUsers>
                     </AdminRoute>
                 </PrivateRoute>
+            },
+            {
+                path:'/dashboard/addMaterials',
+                element:<AddMaterials></AddMaterials>
             }
         ]
     }

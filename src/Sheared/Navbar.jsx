@@ -28,7 +28,6 @@ const Navbar = () => {
                 <nav className='space-x-4'>
                     <NavLink to='/home'>Home</NavLink>
                     <NavLink to='/home/materials'>Materials</NavLink>
-                    <NavLink to='/home/addMaterials'>Add Materials</NavLink>
                     <NavLink to='/dashboard'>Dashboard</NavLink>
                 </nav>
             </div>
