@@ -10,7 +10,7 @@ const AdminMenu = () => {
                 <li>
                     <Link 
                     to='/dashboard/manageUsers'
-                    className='flex items-center gap-2'
+                    className='flex items-center gap-2 cursor-pointer hover:bg-gray-700 p-1 rounded-lg'
                     ><FaUsersCog className='text-lg'></FaUsersCog> Mange Users</Link>
                 </li>
             </ul>

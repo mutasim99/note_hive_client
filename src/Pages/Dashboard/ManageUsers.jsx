@@ -1,12 +1,14 @@
 import UseAuth from '@/Hooks/UseAuth';
 import UseAxiosSecure from '@/Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import React, { useMemo } from 'react';
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import React, { useMemo, useState } from 'react';
+import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table'
 
 const ManageUsers = () => {
     const { user } = UseAuth();
     const axiosSecure = UseAxiosSecure();
+    const [globalFilter, setGlobalFilter] = useState('');
+
     const { data: users = [] } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
@@ -63,12 +65,36 @@ const ManageUsers = () => {
     const table = useReactTable({
         data: users,
         columns: columns,
+        state: {
+            globalFilter,
+        },
         getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel({
+            filterFn: (row, filterValue) => {
+                const name = row.getValue('name')?.toLowerCase() ?? '';
+                const email = row.getValue('email')?.toLowerCase() ?? '';
+
+                return (
+                    name.includes(filterValue.toLowerCase()) ||
+                    email.includes(filterValue.toLowerCase())
+                )
+            }
+        })
     })
 
     return (
         <div className='p-6'>
             <h2 className="text-xl font-bold text-white mb-4">Manage Users</h2>
+            {/* Search bar */}
+            <div className="mb-4">
+                <input
+                    type="text"
+                    placeholder="Search users..."
+                    value={globalFilter ?? ''}
+                    onChange={(e) => setGlobalFilter(e.target.value)}
+                    className="w-80 px-3 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+                />
+            </div>
             <table className='min-w-full border border-gray-700 bg-gray-800 text-white rounded-lg overflow-hidden'>
                 <thead className='bg-gray-700'>
                     {
@@ -107,6 +133,17 @@ const ManageUsers = () => {
                             </tr>
                         ))
                     }
+                    {/* Search result */}
+                    {table.getRowModel().rows.length === 0 && (
+                        <tr>
+                            <td
+                                colSpan={columns.length}
+                                className="text-center py-4 text-gray-400"
+                            >
+                                No users found.
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
