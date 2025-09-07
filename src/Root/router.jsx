@@ -14,6 +14,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '@/Pages/Dashboard/Dashboard';
 import MyProfile from '@/components/Dashboard/MyProfile';
 import ManageUsers from '@/Pages/Dashboard/ManageUsers';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -80,7 +81,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manageUsers',
-                element: <ManageUsers></ManageUsers>
+                element: <PrivateRoute>
+                    <AdminRoute>
+                        <ManageUsers></ManageUsers>
+                    </AdminRoute>
+                </PrivateRoute>
             }
         ]
     }
