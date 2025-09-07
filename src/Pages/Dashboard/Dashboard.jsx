@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router';
 import logoImg from '../../components/Image/LogoImg/logo-removebg.png'
 import { CgProfile } from 'react-icons/cg';
+import Sidebar from '@/components/Dashboard/Sidebar/Sidebar';
 
 const Dashboard = () => {
     return (
@@ -16,11 +17,7 @@ const Dashboard = () => {
                     </Link>
                 </div>
                 <div className='mt-8 flex items-center ml-4'>
-                    <ul>
-                        <li>
-                            <Link to='/dashboard/profile' className='flex items-center gap-2'><CgProfile></CgProfile> My Profile</Link>
-                        </li>
-                    </ul>
+                    <Sidebar></Sidebar>
                 </div>
             </div>
             <div className='col-end-8 md:col-span-10'>

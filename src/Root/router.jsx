@@ -13,6 +13,7 @@ import { createBrowserRouter } from 'react-router';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '@/Pages/Dashboard/Dashboard';
 import MyProfile from '@/components/Dashboard/MyProfile';
+import ManageUsers from '@/Pages/Dashboard/ManageUsers';
 
 const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: '/dashboard/manageUsers',
+                element: <ManageUsers></ManageUsers>
             }
         ]
     }
