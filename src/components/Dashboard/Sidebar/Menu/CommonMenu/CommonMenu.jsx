@@ -23,8 +23,8 @@ const CommonMenu = () => {
             console.log(data);
             toast.success('Successfully Applied to become a contributor')
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data + '👊')
+            console.log(error.response.data.message);
+            toast.error(error.response.data.message + '👊')
         } finally {
             closeModal();
         }

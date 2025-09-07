@@ -3,13 +3,16 @@ import UseAxiosSecure from '@/Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import React, { useMemo, useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table'
+import UpdateRoleModal from '@/components/Modal/UpdateRoleModal';
 
 const ManageUsers = () => {
     const { user } = UseAuth();
     const axiosSecure = UseAxiosSecure();
     const [globalFilter, setGlobalFilter] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectUser, setSelectUser] = useState(null);
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [] , refetch} = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/users/${user?.email}`)
@@ -53,9 +56,15 @@ const ManageUsers = () => {
             columnHelper.display({
                 id: 'actions',
                 header: 'Actions',
-                cell: () => (
-                    <button className='bg-green-400 hover:bg-green-600 text-white px-3 py-1 rounded'>
-                        Action
+                cell: (info) => (
+                    <button
+                        onClick={() => {
+                            setSelectUser(info.row.original)
+                            setIsOpen(true)
+                        }}
+                        className='bg-green-400 hover:bg-green-600 text-white px-3 py-1 rounded'
+                    >
+                        Update
                     </button>
                 )
             })
@@ -81,6 +90,26 @@ const ManageUsers = () => {
             }
         })
     })
+
+    const closeModal = () => {
+        return setIsOpen(false)
+    }
+
+    const handleUpdateRole = async selectedRole => {
+        if (selectUser?.role === selectedRole) {
+            return
+        }
+        try {
+            axiosSecure.patch(`/users/role/${selectUser?.email}`,{
+                role: selectedRole
+            });
+            refetch();
+        }catch(error){
+            console.log(error);
+        }finally{
+            closeModal()
+        }
+    }
 
     return (
         <div className='p-6'>
@@ -146,6 +175,13 @@ const ManageUsers = () => {
                     )}
                 </tbody>
             </table>
+            <UpdateRoleModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                selectUser={selectUser}
+                closeModal={closeModal}
+                handleUpdateRole={handleUpdateRole}
+            ></UpdateRoleModal>
         </div>
     );
 };
