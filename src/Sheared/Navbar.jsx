@@ -28,7 +28,7 @@ const Navbar = () => {
                 <nav className='space-x-4'>
                     <NavLink to='/home'>Home</NavLink>
                     <NavLink to='/home/materials'>Materials</NavLink>
-                    <NavLink to='/dashboard'>Dashboard</NavLink>
+                    <NavLink to='/dashboard/profile'>Dashboard</NavLink>
                 </nav>
             </div>
 
@@ -63,7 +63,7 @@ const Navbar = () => {
                     <div className="absolute top-full left-0 w-full bg-white dark:bg-black shadow-md flex flex-col md:hidden px-4 py-2 space-y-2">
                         <NavLink to="/home" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Home</NavLink>
                         <NavLink to="/home/materials" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Materials</NavLink>
-                        <NavLink to="/dashboard" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
+                        <NavLink to="/dashboard/profile" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
                         {user && user?.email ? (
                             <button
                                 onClick={handleSignOut}
