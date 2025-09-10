@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         </PrivateRoute>,
         children: [
             {
-                path: '/dashboard/profile',
+                index: true,
                 element: <PrivateRoute>
                     <MyProfile></MyProfile>
                 </PrivateRoute>
@@ -98,8 +98,8 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'*',
-        element:<ErrorPge></ErrorPge>
+        path: '*',
+        element: <ErrorPge></ErrorPge>
     }
 ])
 

@@ -11,7 +11,8 @@ import UseAuth from '@/Hooks/UseAuth';
 import { imageUpload } from '@/Api/utils';
 import UseAxiosPublic from '@/Hooks/UseAxiosPublic';
 import { CgSpinnerTwo } from "react-icons/cg";
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import SocialLogin from '@/components/SocialLogin/SocialLogin';
 
 
 const Register = () => {
@@ -22,6 +23,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const axiosPublic = UseAxiosPublic();
     const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/home'
 
     const {
         register,
@@ -62,7 +64,7 @@ const Register = () => {
             console.log(err);
         } finally {
             setLoading(false);
-            navigate('/home')
+            navigate(from, { replace: true })
         }
 
     }
@@ -204,6 +206,10 @@ const Register = () => {
                             </Button>
                         </form>
                     </CardContent>
+                    <hr className='mt-2' />
+                    <SocialLogin></SocialLogin>
+                    <hr className='mt-0.5' />
+                    <p className='text-[#B54C4E] text-center'>Already have an account? <Link to='/login' className='underline'>login</Link></p>
                 </Card>
             </motion.div>
 

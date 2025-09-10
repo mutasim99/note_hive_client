@@ -62,7 +62,7 @@ const ManageUsers = () => {
                             setSelectUser(info.row.original)
                             setIsOpen(true)
                         }}
-                        className='bg-green-400 hover:bg-green-600 text-white px-3 py-1 rounded'
+                        className='bg-green-400 hover:bg-green-600 text-white px-3 py-1 rounded cursor-pointer'
                     >
                         Update
                     </button>
