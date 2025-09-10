@@ -17,6 +17,7 @@ import ManageUsers from '@/Pages/Dashboard/ManageUsers';
 import AdminRoute from './AdminRoute';
 import ContributorRoute from './ContributorRoute';
 import ErrorPge from '@/components/ErrorPage/ErrorPge';
+import AdminOrContributorRoute from './AdminOrContributorRoute';
 
 const router = createBrowserRouter([
     {
@@ -90,9 +91,9 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addMaterials',
                 element: <PrivateRoute>
-                    <ContributorRoute>
+                    <AdminOrContributorRoute>
                         <AddMaterials></AddMaterials>
-                    </ContributorRoute>
+                    </AdminOrContributorRoute>
                 </PrivateRoute>
             }
         ]

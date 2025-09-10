@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { FaUsersCog } from "react-icons/fa";
 import { CgProfile } from 'react-icons/cg';
+import { BiDonateHeart } from 'react-icons/bi';
 
 
 const AdminMenu = () => {
@@ -20,6 +21,12 @@ const AdminMenu = () => {
                         className='flex items-center gap-2 cursor-pointer hover:bg-gray-700 p-1 rounded-lg'
                     >
                         <FaUsersCog className='text-lg'></FaUsersCog> Mange Users</Link>
+                </li>
+                <li>
+                    <Link to='/dashboard/addMaterials'
+                        className='flex items-center gap-2 cursor-pointer hover:bg-gray-700 p-1 rounded-lg'
+                    >
+                        <BiDonateHeart className='text-lg'></BiDonateHeart> Add Materials</Link>
                 </li>
             </ul>
         </nav>
