@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://note-hive-server.vercel.app'
 })
 
 const UseAxiosPublic = () => {
@@ -9,3 +9,6 @@ const UseAxiosPublic = () => {
 };
 
 export default UseAxiosPublic;
+
+
+// baseURL: 'https://note-hive-server.vercel.app'

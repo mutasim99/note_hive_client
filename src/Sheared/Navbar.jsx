@@ -15,11 +15,11 @@ const Navbar = () => {
         signOutUser();
     }
     return (
-        <div className='fixed top-0 left-0 w-full z-10 flex justify-between items-center px-6 py-4  shadow'>
+        <div className='fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4  shadow'>
             <Link to='/' className='cursor-pointer flex items-center gap-2'>
-                <img 
-                className='h-14 w-16 aspect-square object-cover'
-                src={logoImg} alt="" />
+                <img
+                    className='h-14 w-16 aspect-square object-cover'
+                    src={logoImg} alt="" />
                 <h4 className='text-center text-2xl font-medium'>Note Hive</h4>
             </Link>
 
@@ -63,8 +63,7 @@ const Navbar = () => {
                     <div className="absolute top-full left-0 w-full bg-white dark:bg-black shadow-md flex flex-col md:hidden px-4 py-2 space-y-2">
                         <NavLink to="/home" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Home</NavLink>
                         <NavLink to="/home/materials" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Materials</NavLink>
-                        <NavLink to="/home/addMaterials" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Add Materials</NavLink>
-                        <NavLink to="/home/dashboard" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
+                        <NavLink to="/dashboard" className="block py-2 hover:text-purple-500" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
                         {user && user?.email ? (
                             <button
                                 onClick={handleSignOut}

@@ -15,6 +15,8 @@ import Dashboard from '@/Pages/Dashboard/Dashboard';
 import MyProfile from '@/components/Dashboard/MyProfile';
 import ManageUsers from '@/Pages/Dashboard/ManageUsers';
 import AdminRoute from './AdminRoute';
+import ContributorRoute from './ContributorRoute';
+import ErrorPge from '@/components/ErrorPage/ErrorPge';
 
 const router = createBrowserRouter([
     {
@@ -67,11 +69,15 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute>
+            <Dashboard></Dashboard>
+        </PrivateRoute>,
         children: [
             {
                 path: '/dashboard/profile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoute>
+                    <MyProfile></MyProfile>
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/manageUsers',
@@ -82,10 +88,18 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path:'/dashboard/addMaterials',
-                element:<AddMaterials></AddMaterials>
+                path: '/dashboard/addMaterials',
+                element: <PrivateRoute>
+                    <ContributorRoute>
+                        <AddMaterials></AddMaterials>
+                    </ContributorRoute>
+                </PrivateRoute>
             }
         ]
+    },
+    {
+        path:'*',
+        element:<ErrorPge></ErrorPge>
     }
 ])
 
