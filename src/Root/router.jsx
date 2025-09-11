@@ -15,7 +15,6 @@ import Dashboard from '@/Pages/Dashboard/Dashboard';
 import MyProfile from '@/components/Dashboard/MyProfile';
 import ManageUsers from '@/Pages/Dashboard/ManageUsers';
 import AdminRoute from './AdminRoute';
-import ContributorRoute from './ContributorRoute';
 import ErrorPge from '@/components/ErrorPage/ErrorPge';
 import AdminOrContributorRoute from './AdminOrContributorRoute';
 
