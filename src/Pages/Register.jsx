@@ -56,6 +56,8 @@ const Register = () => {
                 name: data.name,
                 email: data.email,
                 institution: data.institution || 'N/A',
+                semester: data.semester || 'N/A',
+                department: data.department || 'N/A',
                 photo: imgUrl
             }
 
@@ -92,110 +94,156 @@ const Register = () => {
                             className="space-y-4"
                             onSubmit={handleSubmit(onSubmit)}
                         >
-                            {/* User name */}
-                            <div className="space-y-2">
-                                <Label className="text-gray-900 dark:text-gray-200">
-                                    Username
-                                </Label>
-                                <Input
-                                    name='name'
-                                    type='text'
-                                    placeholder="Enter your Username"
-                                    {...register("name", { required: true })}
-                                    className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
-                                />
-                            </div>
-                            {/* Email */}
-                            <div className="space-y-2">
-                                <Label className="text-gray-900 dark:text-gray-200">
-                                    Email
-                                </Label>
-                                <Input
-                                    name="email"
-                                    type="email"
-                                    placeholder="Enter your Email"
-                                    {...register("email", { required: true })}
-                                    className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
-                                />
-                            </div>
-
-                            {/* Password */}
-
-                            <div className="space-y-2">
-                                <Label htmlFor="password" className="text-gray-900 dark:text-gray-200">
-                                    Password
-                                </Label>
-                                <div className="relative">
+                            <div className='flex justify-center items-center gap-4 md:gap-8 space-y-2'>
+                                {/* User name */}
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Username
+                                    </Label>
                                     <Input
-                                        name="password"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Enter your Password"
-                                        {...register("password", { required: true })}
-                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white pr-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        className="absolute inset-y-0 right-3 flex items-center text-gray-600 dark:text-gray-300"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                    >
-                                        {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Institution */}
-
-                            <div className="space-y-2">
-                                <Label className="text-gray-900 dark:text-gray-200">
-                                    Institution
-                                </Label>
-                                <Input
-                                    name='institution'
-                                    placeholder="Enter your Institution"
-                                    {...register("institution")}
-                                    className="rounded-full border border-[#E38B8B]/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
-                                />
-                            </div>
-                            {/* Image upload */}
-
-                            <div className="space-y-2">
-                                <Label className="text-gray-900 dark:text-gray-200">
-                                    Upload Profile Image
-                                </Label>
-                                <div className="flex items-center gap-3">
-                                    <label
-                                        htmlFor="image"
-                                        className="cursor-pointer flex items-center gap-2 rounded-full border border-[#E38B8B]/50 bg-white/50 dark:bg-white/10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-[#B54C4E]/20 transition"
-                                    >
-                                        <Upload size={18} /> Choose File
-                                    </label>
-                                    <Input
-                                        id="image"
-                                        name="image"
-                                        type="file"
-                                        accept="image/*"
-                                        {...register("image", {
-                                            onChange: (e) => {
-                                                const file = e.target.files?.[0];
-                                                if (file) {
-                                                    setPreview(URL.createObjectURL(file));
-                                                    setImgSize(file.size);
-                                                }
-                                            },
-                                        })}
-                                        className="hidden"
+                                        name='name'
+                                        type='text'
+                                        placeholder="Enter your Username"
+                                        {...register("name", { required: true })}
+                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
                                     />
                                 </div>
-                                {preview && (
-                                    <div className="mt-3 flex justify-center items-center gap-2">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="h-24 w-24 rounded-full object-cover border-2 border-[#B54C4E] shadow-md"
+                                {/* Email */}
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Email
+                                    </Label>
+                                    <Input
+                                        name="email"
+                                        type="email"
+                                        placeholder="Enter your Email"
+                                        {...register("email", { required: true })}
+                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='flex justify-center items-center gap-4 md:gap-8 space-y-2'>
+                                {/* Password */}
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="password" className="text-gray-900 dark:text-gray-200">
+                                        Password
+                                    </Label>
+                                    <div className="relative">
+                                        <Input
+                                            name="password"
+                                            type={showPassword ? "text" : "password"}
+                                            placeholder="Enter your Password"
+                                            {...register("password", { required: true })}
+                                            className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white pr-10"
                                         />
-                                        <p>Image Size: {Math.round(imgSize / 1024)} kb</p>
+                                        <button
+                                            type="button"
+                                            className="absolute inset-y-0 right-3 flex items-center text-gray-600 dark:text-gray-300"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                                        </button>
                                     </div>
-                                )}
+                                </div>
+
+                                {/* Institution */}
+
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Institution
+                                    </Label>
+                                    <select
+                                        name='institution'
+                                        {...register('institution', { required: true })}
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                    >
+                                        <option value="">Select Institution</option>
+                                        <option value="BEC">Barishal Engineering College</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className='flex justify-center items-center gap-4 md:gap-8 space-y-2'>
+                                {/* select Department */}
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Department
+                                    </Label>
+                                    <select
+                                        name='department'
+                                        {...register('department', { required: true })}
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                    >
+                                        <option value="">Select Department</option>
+                                        <option value="Civil">Civil</option>
+                                        <option value="EEE">EEE</option>
+                                    </select>
+                                </div>
+                                {/* select semester */}
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Institution
+                                    </Label>
+                                    <select
+                                        name='semester'
+                                        {...register('semester', { required: true })}
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                    >
+                                        <option value="">Select Year & Semester</option>
+                                        <option value="1:1">1st Year 1st Semester</option>
+                                        <option value="1:2">1st Year 2nd Semester</option>
+                                        <option value="2:1">2nd Year 1st Semester</option>
+                                        <option value="2:2">2nd Year 2nd Semester</option>
+                                        <option value="3:1">3rd Year 1st Semester</option>
+                                        <option value="3:2">3rd Year 2nd Semester</option>
+                                        <option value="4:1">4th Year 1st Semester</option>
+                                        <option value="4:2">4th Year 2nd Semester</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                {/* Image upload */}
+                                <div className="space-y-2">
+                                    <Label className="text-gray-900 dark:text-gray-200">
+                                        Upload Profile Image
+                                    </Label>
+                                    <div className="flex items-center gap-3">
+                                        <label
+                                            htmlFor="image"
+                                            className="cursor-pointer flex items-center gap-2 rounded-full border border-[#E38B8B]/50 bg-white/50 dark:bg-white/10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-[#B54C4E]/20 transition"
+                                        >
+                                            <Upload size={18} /> Choose File
+                                        </label>
+                                        <Input
+                                            id="image"
+                                            name="image"
+                                            type="file"
+                                            accept="image/*"
+                                            {...register("image", {
+                                                onChange: (e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        setPreview(URL.createObjectURL(file));
+                                                        setImgSize(file.size);
+                                                    }
+                                                },
+                                            })}
+                                            className="hidden"
+                                        />
+                                    </div>
+                                    {preview && (
+                                        <div className="mt-3 flex justify-center items-center gap-2">
+                                            <img
+                                                src={preview}
+                                                alt="Preview"
+                                                className="h-24 w-24 rounded-full object-cover border-2 border-[#B54C4E] shadow-md"
+                                            />
+                                            <p>Image Size: {Math.round(imgSize / 1024)} kb</p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             {/* Submit button */}
                             <Button
