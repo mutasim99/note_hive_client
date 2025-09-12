@@ -25,7 +25,7 @@ const ShowPdf = () => {
 
                             {/* PDF Header */}
                             <div className='p-4 border-b border-green-500 dark:border-gray-700 flex justify-between items-center'>
-                                <h3 className='text-lg font-semibold'>{file.subject}</h3>
+                                <h3 className='text-lg font-semibold'>{file.title || file.subject}</h3>
                                 <a
                                     href={file.driveUrl}  // direct Google Drive link
                                     target="_blank"

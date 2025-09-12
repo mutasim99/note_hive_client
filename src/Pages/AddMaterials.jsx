@@ -9,6 +9,7 @@ const AddMaterials = () => {
     const [department, setDepartment] = useState('');
     const [subject, setSubject] = useState('');
     const [subjects, setSubjects] = useState([]);
+    const [title, setTitle] = useState('');
     const [loading, setLoading] = useState(false);
 
     const axiosSecure = UseAxiosSecure()
@@ -45,6 +46,7 @@ const AddMaterials = () => {
                 semester,
                 department,
                 subject,
+                title,
                 driveUrl: driveLink,
             })
             toast.success('Materials uploaded successfully');
@@ -54,6 +56,7 @@ const AddMaterials = () => {
             setSubject('');
             setDriveLink('');
             setSubjects([]);
+            setTitle('')
         } catch (err) {
             console.log(err);
             toast.error(err.response.data);
@@ -132,6 +135,20 @@ const AddMaterials = () => {
                                 </option>
                             ))}
                         </select>
+                    </div>
+                    {/* Add title */}
+                    <div>
+                        <label className='block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>
+                            Add a title
+                        </label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className='w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100'
+                            placeholder='please add a title'
+                            required
+                        />
                     </div>
                     {/* drive link upload */}
                     <div>
