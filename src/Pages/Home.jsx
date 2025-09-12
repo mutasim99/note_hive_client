@@ -1,4 +1,5 @@
 import BrowseBySubjects from '@/components/Home/BrowseBySubjects';
+import CallToAction from '@/components/Home/CallToAction';
 import HowItWorks from '@/components/Home/HowItWorks';
 import LatestUpload from '@/components/Home/LatestUpload';
 import DigitalHero from '@/components/nurui/digital-hero';
@@ -11,6 +12,7 @@ const Home = () => {
             <BrowseBySubjects></BrowseBySubjects>
             <LatestUpload></LatestUpload>
             <HowItWorks></HowItWorks>
+            <CallToAction></CallToAction>
         </div>
     );
 };
