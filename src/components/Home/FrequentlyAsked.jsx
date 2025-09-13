@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function GradientAccordion() {
     const faqData = [{
         question: "How do I upload my notes??",
-        answer: "To upload your notes, simply click the 'Upload Your Notes' button on the homepage and follow the instructions. You can upload files in PDF, DOCX, or plain text format."
+        answer: "Click Dashboard on the homepage, then select Become a Contributor to upload your notes and join our growing community"
     }, {
         question: "Is Note-Hive free to use??",
         answer: "Yes, Note-Hive is completely free for all users. We believe that access to educational resources should be available to everyone."
@@ -32,7 +32,7 @@ function AccordionItem({
     const [isOpen, setIsOpen] = useState(false);
     return <div className="p-0.5 rounded-lg bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-500 dark:to-pink-600">
         <div className="bg-gray-50 dark:bg-gray-800 rounded-md">
-            <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ">
                 <span className="text-lg font-medium text-gray-900 dark:text-white">
                     {question}
                 </span>
