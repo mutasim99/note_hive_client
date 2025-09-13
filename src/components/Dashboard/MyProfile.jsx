@@ -2,9 +2,12 @@
 import UseAuth from '@/Hooks/UseAuth';
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Bell, Calendar } from 'lucide-react';
+import { Bell, Calendar, Check, Plus, Trash } from 'lucide-react';
 import UseAxiosSecure from '@/Hooks/UseAxiosSecure';
 import Clock from '../ui/Clock';
+import { Button } from '../ui/button';
+import AddEventModal from '../Modal/AddEventModal';
+import AddTaskModal from '../Modal/AddTaskModal';
 
 const MyProfile = () => {
     const { user } = UseAuth();
@@ -13,6 +16,13 @@ const MyProfile = () => {
     const [classes, setClasses] = useState([]);
     const [holiday, setHoliday] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const [event, setEvent] = useState([]);
+    const [dailyTask, setDailyTask] = useState([null]);
+
+    const [isEventModalOpen, setIsEventModalOPen] = useState(false);
+    const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
     const axiosSecure = UseAxiosSecure();
 
     // Set greeting based on current hour
@@ -54,8 +64,8 @@ const MyProfile = () => {
 
                 const res = await axiosSecure.get('/api/todayClasses', {
                     params: {
-                        institution: fullUser.institution,
-                        department: fullUser.department,
+                        institution: fullUser?.institution,
+                        department: fullUser?.department,
                         year,
                         semester: sem
                     }
@@ -83,8 +93,47 @@ const MyProfile = () => {
 
         fetchClasses();
     }, [axiosSecure, fullUser, user]);
-    console.log(fullUser);
 
+    /* fetch event daily task */
+    useEffect(() => {
+        if (!user?.email) {
+            return;
+        }
+        const fetchData = async () => {
+            const resEvents = await axiosSecure.get(`/api/event/${user?.email}`)
+            setEvent(resEvents.data);
+            const resTask = await axiosSecure.get(`/api/dailyTask/${user?.email}`)
+            setDailyTask(resTask.data);
+        }
+        fetchData();
+    }, [user, axiosSecure]);
+
+    /* Handle update task and event */
+
+    const toggleComplete = async (id, type, completed) => {
+        const url = type === 'event' ? '/api/event' : '/api/dailyTask'
+        await axiosSecure.patch(`${url}/${id}`, { completed: !completed });
+        if (type === 'event') {
+            setEvent(prev => prev.map(e => e._id === id ? { ...e, completed: !completed } : e));
+        } else {
+            setDailyTask(prev => prev.map(r => r._id === id ? { ...r, completed: !completed } : r));
+        }
+    }
+
+    /* Handle delete task and event */
+    const handleDelete = async (id, type) => {
+        const url = type === 'event' ? '/api/event/delete' : '/api/dailyTask/delete';
+        await axiosSecure.delete(`${url}/${id}`)
+        if (type === 'event') {
+            setEvent(prev => prev.filter(e => e._id !== id))
+        } else {
+            setDailyTask(prev => prev.filter(r => r._id !== id))
+        }
+    }
+
+    /* handle event and task */
+    const handleAddEvent = (newEvent) => setEvent(prev => [...prev, newEvent]);
+    const handleAddTask = (newTask) => setDailyTask(prev => [...prev, newTask])
     return (
         <div className='min-h-screen w-full bg-gradient-to-br from-cyan-900 via-blue-900 to-violet-900 dark:from-gray-900 dark:via-gray-800 dark:to-black flex flex-col items-center p-4 sm:p-6 lg:p-10'>
             {/* Profile Header */}
@@ -132,10 +181,28 @@ const MyProfile = () => {
                     <CardHeader className="flex flex-row items-center space-x-2">
                         <Calendar className="w-5 h-5 text-green-400" />
                         <CardTitle className="text-white">Upcoming Events</CardTitle>
+                        <button
+                            onClick={() => setIsEventModalOPen(true)}
+                            className='bg-transparent p-2 rounded-xl  hover:bg-purple-500 dark:hover:bg-gray-500 dark:text-white cursor-pointer flex items-center'><Plus></Plus>Add</button>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-gray-300">Hackathon - Friday 10 AM</p>
-                        <p className="text-gray-300">Group Project Due - Monday</p>
+                        {event.length === 0 ? <p>No events yet</p> : (
+                            <ol className='space-y-2 list-decimal ml-2.5' type='1'>
+                                {event.map((e) => (
+                                    <li key={e?._id} >
+                                        <div className='flex items-center justify-between p-2.5'>
+                                            <span className={`${e?.completed ? 'line-through text-gray-400' : ''}`}>
+                                                {e?.text}
+                                            </span>
+                                            <div className='flex items-center gap-4'>
+                                                <Button className='cursor-pointer bg-green-600 text-white p-1' size='icons' variant='ghost' onClick={() => toggleComplete(e._id, 'event', e.completed)}><Check></Check></Button>
+                                                <Button className='cursor-pointer bg-red-600 text-white p-1' size='icons' variant='ghost' onClick={() => handleDelete(e._id, 'event')}><Trash></Trash></Button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        )}
                     </CardContent>
                 </Card>
 
@@ -143,14 +210,44 @@ const MyProfile = () => {
                 <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl space-y-1">
                     <CardHeader className="flex flex-row items-center space-x-2">
                         <Bell className="w-5 h-5 text-yellow-400" />
-                        <CardTitle className="text-white">Reminders</CardTitle>
+                        <CardTitle className="text-white">Daily Task</CardTitle>
+                        <button
+                            onClick={() => setIsTaskModalOpen(true)}
+                            className='bg-transparent p-2 rounded-xl  hover:bg-purple-500 dark:hover:bg-gray-500 dark:text-white cursor-pointer flex items-center'><Plus></Plus>Add</button>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-gray-300">Submit assignment tonight</p>
-                        <p className="text-gray-300">Meeting with mentor tomorrow</p>
+                        {dailyTask === 0 ? <p>To task today</p> : (
+                            <ol className='space-y-2 list-decimal ml-2.5' type='1'>
+                                {dailyTask.map((e) => (
+                                    <li key={e?._id}>
+                                        <div className='flex items-center justify-between p-2.5'>
+                                            <span className={`${e?.completed ? 'line-through text-gray-400' : ''}`}>
+                                                {e?.text}
+                                            </span>
+                                            <div className='flex items-center gap-4'>
+                                                <Button className='cursor-pointer bg-green-600 text-white p-1' size='icons' variant='ghost' onClick={() => toggleComplete(e._id, 'dailyTask', e.completed)}><Check></Check></Button>
+                                                <Button className='cursor-pointer bg-red-600 text-white p-1' size='icons' variant='ghost' onClick={() => handleDelete(e._id, 'dailyTask')}><Trash></Trash></Button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        )}
                     </CardContent>
                 </Card>
             </div>
+            <AddEventModal
+                open={isEventModalOpen}
+                setOpen={setIsEventModalOPen}
+                onAdd={handleAddEvent}
+                email={user?.email}
+            ></AddEventModal>
+            <AddTaskModal
+                open={isTaskModalOpen}
+                setOpen={setIsTaskModalOpen}
+                onAdd={handleAddTask}
+                email={user?.email}
+            ></AddTaskModal>
         </div>
     );
 };

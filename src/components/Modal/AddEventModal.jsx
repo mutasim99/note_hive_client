@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import UseAxiosSecure from '@/Hooks/UseAxiosSecure';
+import { toast } from 'react-toastify';
+
+const AddEventModal = ({ open, setOpen, onAdd, email }) => {
+    const [text, setText] = useState('');
+    const axiosSecure = UseAxiosSecure();
+
+    const handleSubmit = async () => {
+        if (!text.trim()) {
+            return;
+        }
+        const res = await axiosSecure.post('/api/addEvent', { email, text });
+        const newEvent = { ...res.data, text, completed: false };
+        onAdd(newEvent);
+        setText('');
+        setOpen(false);
+        toast.success('added event successfully');
+        setOpen(false)
+    }
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Add event</DialogTitle>
+                </DialogHeader>
+                <input
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    className='w-full p-2 rounded-lg'
+                    placeholder='type your event'
+                />
+                <button
+                    onClick={handleSubmit}
+                    className='w-full p-2 bg-linear-65 from-purple-500 to-pink-500 rounded-lg cursor-pointer'>Save</button>
+            </DialogContent>
+
+        </Dialog>
+    );
+};
+
+export default AddEventModal;
