@@ -1,5 +1,6 @@
 import BrowseBySubjects from '@/components/Home/BrowseBySubjects';
 import CallToAction from '@/components/Home/CallToAction';
+import GradientAccordion from '@/components/Home/FrequentlyAsked';
 import HowItWorks from '@/components/Home/HowItWorks';
 import LatestUpload from '@/components/Home/LatestUpload';
 import DigitalHero from '@/components/nurui/digital-hero';
@@ -13,6 +14,7 @@ const Home = () => {
             <LatestUpload></LatestUpload>
             <HowItWorks></HowItWorks>
             <CallToAction></CallToAction>
+            <GradientAccordion></GradientAccordion>
         </div>
     );
 };

@@ -87,40 +87,39 @@ export default function DigitalHero() {
       />
 
       {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 py-6">
+      <div className="relative z-10 max-w-11/12 mx-auto px-8 py-6">
         {/* Main content */}
         <div className="grid md:grid-cols-2 gap-4 px-14">
           <div
             className={`flex flex-col justify-center transform transition-all duration-1000 delay-300 ${isLoaded ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"}`}>
-            <div className="text-[#a3ff12] font-extrabold text-5xl md:text-6xl leading-none tracking-tighter">
+            <div className="text-[#a3ff12] font-bold text-3xl md:text-7xl leading-none tracking-tighter">
               <div className="overflow-hidden">
                 <div
                   className="transform transition-transform duration-1000"
                   style={{ transitionDelay: "300ms" }}>
-                  DECENTRALIZED
+                  Knowledge,
                 </div>
               </div>
               <div className="overflow-hidden">
                 <div
                   className="transform transition-transform duration-1000"
                   style={{ transitionDelay: "500ms" }}>
-                  NFT EXCHANGE
+                  Growth,
                 </div>
               </div>
               <div className="overflow-hidden">
                 <div
                   className="transform transition-transform duration-1000"
                   style={{ transitionDelay: "700ms" }}>
-                  PLATFORM
+                  Success.
                 </div>
               </div>
             </div>
 
             <p
-              className="text-gray-400 mt-8 text-sm leading-relaxed max-w-md transform transition-all duration-1000"
+              className="text-gray-400 mt-8 text-sm leading-relaxed max-w-md transform transition-all duration-1000 uppercase"
               style={{ transitionDelay: "900ms" }}>
-              DIVE INTO THE WORLD OF DIGITAL ART. EASILY CREATE, SELL, AND BUY
-              NFTS WITH THE SECURITY AND TRANSPARENCY OF BLOCKCHAIN TECHNOLOGY.
+              Every idea has the power to change your path. With the right learning and motivation, you can transform challenges into opportunities and dreams into reality.
             </p>
 
 

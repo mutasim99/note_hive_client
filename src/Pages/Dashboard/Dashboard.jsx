@@ -20,7 +20,7 @@ const Dashboard = () => {
                     <Sidebar></Sidebar>
                 </div>
             </div>
-            <div className='col-end-8 md:col-span-10'>
+            <div className='col-span-8 md:col-span-10'>
                 <Outlet></Outlet>
             </div>
         </div>

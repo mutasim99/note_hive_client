@@ -86,20 +86,20 @@ const MyProfile = () => {
     console.log(fullUser);
 
     return (
-        <div className='min-h-screen w-full bg-gradient-to-br from-cyan-900 via-blue-900 to-violet-900 dark:from-gray-900 dark:via-gray-800 dark:to-black flex flex-col items-center p-6'>
+        <div className='min-h-screen w-full bg-gradient-to-br from-cyan-900 via-blue-900 to-violet-900 dark:from-gray-900 dark:via-gray-800 dark:to-black flex flex-col items-center p-4 sm:p-6 lg:p-10'>
             {/* Profile Header */}
             <div className='flex flex-col items-center space-y-4'>
                 <Clock />
-                <h1 className='text-xl font-semibold text-white'>
+                <h1 className='text-lg sm:text-xl lg:text-2xl font-semibold text-white'>
                     {greeting}, <span className='text-shadow-cyan-300'>{user?.name}</span>
                 </h1>
                 <p className="text-gray-300 text-sm">Welcome back! Here’s your overview:</p>
             </div>
 
             {/* Card Grid */}
-            <div className="grid gap-6 mt-10 w-full max-w-5xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 mt-10 w-full max-w-6xl mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {/* Today's Classes */}
-                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl">
+                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl space-y-1">
                     <CardHeader className="flex flex-row items-center space-x-2">
                         <Calendar className="w-5 h-5 text-green-400" />
                         <CardTitle className="text-white">Today's Classes</CardTitle>
@@ -128,7 +128,7 @@ const MyProfile = () => {
                 </Card>
 
                 {/* Upcoming Events */}
-                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl">
+                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl space-y-1">
                     <CardHeader className="flex flex-row items-center space-x-2">
                         <Calendar className="w-5 h-5 text-green-400" />
                         <CardTitle className="text-white">Upcoming Events</CardTitle>
@@ -140,7 +140,7 @@ const MyProfile = () => {
                 </Card>
 
                 {/* Reminders */}
-                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl">
+                <Card className="bg-white/10 dark:bg-gray-800/70 backdrop-blur-md shadow-xl border-0 rounded-2xl space-y-1">
                     <CardHeader className="flex flex-row items-center space-x-2">
                         <Bell className="w-5 h-5 text-yellow-400" />
                         <CardTitle className="text-white">Reminders</CardTitle>
