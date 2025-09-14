@@ -17,6 +17,7 @@ import ManageUsers from '@/Pages/Dashboard/ManageUsers';
 import AdminRoute from './AdminRoute';
 import ErrorPge from '@/components/ErrorPage/ErrorPge';
 import AdminOrContributorRoute from './AdminOrContributorRoute';
+import UsersPdfs from '@/Pages/Dashboard/UsersPdfs';
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,12 @@ const router = createBrowserRouter([
                 path: '/home/pdfs/:semester/:department/:subject',
                 element: <PrivateRoute>
                     <ShowPdf></ShowPdf>
+                </PrivateRoute>
+            },
+            {
+                path: '/home/pdfs/:sub/:userId',
+                element: <PrivateRoute>
+                    <UsersPdfs></UsersPdfs>
                 </PrivateRoute>
             }
         ]

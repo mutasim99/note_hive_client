@@ -7,7 +7,7 @@ import Sidebar from '@/components/Dashboard/Sidebar/Sidebar';
 const Dashboard = () => {
     return (
         <div className='grid grid-cols-12'>
-            <div className='col-span-4 md:col-span-2 h-screen bg-green-200 dark:bg-purple-500'>
+            <div className='col-span-4 md:col-span-2 h-full bg-green-200 dark:bg-purple-500'>
                 <div className='mt-1 items-center justify-center'>
                     <Link to='/home' className='flex items-center gap-2 cursor-pointer'>
                         <img

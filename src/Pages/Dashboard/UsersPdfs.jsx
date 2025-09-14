@@ -1,24 +1,36 @@
+import UseAuth from '@/Hooks/UseAuth';
 import UseAxiosSecure from '@/Hooks/UseAxiosSecure';
 import React, { useEffect, useState } from 'react';
-import {  useParams } from 'react-router';
+import { useParams } from 'react-router';
 
-const ShowPdf = () => {
-    const { semester, department, subject } = useParams();
+const UsersPdfs = () => {
+    const { sub } = useParams();
+    const { user } = UseAuth();
+    const [fullUser, setFullUser] = useState();
     const [pdfs, setPdfs] = useState([]);
     const axiosSecure = UseAxiosSecure();
 
     useEffect(() => {
-        axiosSecure.get(`/pdfs/${semester}/${department}/${subject}`)
-            .then(res => {
-                setPdfs(res.data)
-            })
+        const getUser = async () => {
+            const res = await axiosSecure.get(`/api/user/${user?.email}`);
+            setFullUser(res.data)
+        }
+        getUser();
+    }, [axiosSecure, user]);
 
-    }, [axiosSecure, semester, department, subject])
+    useEffect(() => {
+        const fetchPdfs = async () => {
+            const res = await axiosSecure.get(`/pdfs/${sub}/${fullUser._id}`);
+            setPdfs(res.data)
+        }
+        fetchPdfs();
+    }, [axiosSecure, fullUser, sub])
+    console.log(pdfs, sub);
     return (
         <div className='bg-gradient-to-r from-green-50 via-emerald-100 to-green-200 dark:from-gray-800 dark:via-gray-900 dark:to-black
             transition-colors duration-1000 h-screen'>
             <div className='pt-24 px-4 max-w-11/12 mx-auto'>
-                <h2 className='text-3xl font-bold mb-6 text-center'>{subject}</h2>
+                <h2 className='text-3xl font-bold mb-6 text-center'>{sub}</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-10'>
                     {pdfs?.map(file => (
                         <div key={file._id} className='bg-gray-200 dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-105'>
@@ -53,4 +65,4 @@ const ShowPdf = () => {
     );
 };
 
-export default ShowPdf;
+export default UsersPdfs;

@@ -8,6 +8,7 @@ import Clock from '../ui/Clock';
 import { Button } from '../ui/button';
 import AddEventModal from '../Modal/AddEventModal';
 import AddTaskModal from '../Modal/AddTaskModal';
+import UserSubjectsCard from './UserSubjectsCard';
 
 const MyProfile = () => {
     const { user } = UseAuth();
@@ -22,6 +23,8 @@ const MyProfile = () => {
 
     const [isEventModalOpen, setIsEventModalOPen] = useState(false);
     const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
+    const [subjects, setSubjects] = useState([]);
 
     const axiosSecure = UseAxiosSecure();
 
@@ -133,14 +136,25 @@ const MyProfile = () => {
 
     /* handle event and task */
     const handleAddEvent = (newEvent) => setEvent(prev => [...prev, newEvent]);
-    const handleAddTask = (newTask) => setDailyTask(prev => [...prev, newTask])
+    const handleAddTask = (newTask) => setDailyTask(prev => [...prev, newTask]);
+
+    /* Get subject by users semester */
+    useEffect(() => {
+        const fetchSubjects = async () => {
+            const res = await axiosSecure.get(`/profile/subject/${fullUser?._id}`);
+            setSubjects(res.data);
+        }
+        fetchSubjects();
+    }, [axiosSecure, fullUser]);
+
+
     return (
         <div className='min-h-screen w-full bg-gradient-to-br from-cyan-900 via-blue-900 to-violet-900 dark:from-gray-900 dark:via-gray-800 dark:to-black flex flex-col items-center p-4 sm:p-6 lg:p-10'>
             {/* Profile Header */}
             <div className='flex flex-col items-center space-y-4'>
                 <Clock />
                 <h1 className='text-lg sm:text-xl lg:text-2xl font-semibold text-white'>
-                    {greeting}, <span className='text-shadow-cyan-300'>{user?.name}</span>
+                    {greeting}, <span className='text-shadow-cyan-300'>{user?.displayName}</span>
                 </h1>
                 <p className="text-gray-300 text-sm">Welcome back! Here’s your overview:</p>
             </div>
@@ -216,10 +230,10 @@ const MyProfile = () => {
                             className='bg-transparent p-2 rounded-xl  hover:bg-purple-500 dark:hover:bg-gray-500 dark:text-white cursor-pointer flex items-center'><Plus></Plus>Add</button>
                     </CardHeader>
                     <CardContent>
-                        {dailyTask === 0 ? <p>To task today</p> : (
-                            <ol className='space-y-2 list-decimal ml-2.5' type='1'>
-                                {dailyTask.map((e) => (
-                                    <li key={e?._id}>
+                        {dailyTask.length === 0 ? <p>To task today</p> : (
+                            <ol className='space-y-2 list-decimal ml-2.5'>
+                                {dailyTask.map((e,idx) => (
+                                    <li key={idx}>
                                         <div className='flex items-center justify-between p-2.5'>
                                             <span className={`${e?.completed ? 'line-through text-gray-400' : ''}`}>
                                                 {e?.text}
@@ -235,6 +249,18 @@ const MyProfile = () => {
                         )}
                     </CardContent>
                 </Card>
+            </div>
+            {/* Show all subjects */}
+            <div>
+                <h2>My Materials</h2>
+                <div className='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                    {
+                        subjects.map((sub, idx) => <UserSubjectsCard
+                            key={idx}
+                            sub={sub}
+                        ></UserSubjectsCard>)
+                    }
+                </div>
             </div>
             <AddEventModal
                 open={isEventModalOpen}

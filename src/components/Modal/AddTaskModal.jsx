@@ -16,6 +16,7 @@ const AddTaskModal = ({ open, setOpen, onAdd, email }) => {
         const newTask = { ...res.data, text, completed: false };
         onAdd(newTask);
         setText('');
+        setOpen(false);
         toast.success('Added a task successfully')
     }
     return (
