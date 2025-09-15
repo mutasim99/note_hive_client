@@ -105,7 +105,7 @@ const Register = () => {
                                         type='text'
                                         placeholder="Enter your Username"
                                         {...register("name", { required: true })}
-                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 "
                                     />
                                 </div>
                                 {/* Email */}
@@ -118,7 +118,7 @@ const Register = () => {
                                         type="email"
                                         placeholder="Enter your Email"
                                         {...register("email", { required: true })}
-                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                        className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 "
                                     />
                                 </div>
                             </div>
@@ -136,7 +136,7 @@ const Register = () => {
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Enter your Password"
                                             {...register("password", { required: true })}
-                                            className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white pr-10"
+                                            className="rounded-full border border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900  pr-10"
                                         />
                                         <button
                                             type="button"
@@ -157,7 +157,7 @@ const Register = () => {
                                     <select
                                         name='institution'
                                         {...register('institution', { required: true })}
-                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 "
                                     >
                                         <option value="">Select Institution</option>
                                         <option value="BEC">Barishal Engineering College</option>
@@ -174,7 +174,7 @@ const Register = () => {
                                     <select
                                         name='department'
                                         {...register('department', { required: true })}
-                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 "
                                     >
                                         <option value="">Select Department</option>
                                         <option value="Civil">Civil</option>
@@ -189,7 +189,7 @@ const Register = () => {
                                     <select
                                         name='semester'
                                         {...register('semester', { required: true })}
-                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 dark:text-white"
+                                        className="w-full border p-2 rounded-full border-purple-300/50 bg-white/50 dark:bg-white/10 text-gray-900 "
                                     >
                                         <option value="">Select Year & Semester</option>
                                         <option value="1:1">1st Year 1st Semester</option>
