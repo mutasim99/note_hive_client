@@ -18,6 +18,7 @@ import AdminRoute from './AdminRoute';
 import ErrorPge from '@/components/ErrorPage/ErrorPge';
 import AdminOrContributorRoute from './AdminOrContributorRoute';
 import UsersPdfs from '@/Pages/Dashboard/UsersPdfs';
+import AboutUsPage from '@/Pages/AboutusPage';
 
 const router = createBrowserRouter([
     {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             }
         ]
+    },
+    {
+        path: '/aboutUs',
+        element: <AboutUsPage></AboutUsPage>
     },
     {
         path: '*',

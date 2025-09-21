@@ -145,12 +145,14 @@ const WavesHero = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              className="border-white/10 text-lg text-white bg-white/10">
-              About Us
-              <ArrowRight className="ml-2 h-5 w-5 rotate-[-50deg]" />
-            </Button>
+            <Link to='/aboutUs'>
+              <Button
+                variant="outline"
+                className="border-white/10 text-lg text-white bg-white/10">
+                About Us
+                <ArrowRight className="ml-2 h-5 w-5 rotate-[-50deg]" />
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </div>
