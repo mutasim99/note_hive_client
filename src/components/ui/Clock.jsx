@@ -1,7 +1,6 @@
 import UseAuth from '@/Hooks/UseAuth';
 import { UserPen } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { FiEdit } from "react-icons/fi";
 import UpdateProfileModal from '../Modal/UpdateProfileModal';
 
 const Clock = () => {
