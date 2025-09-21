@@ -8,6 +8,7 @@ import img6 from '../../src/assets/img-6.jpg'
 import { MdEmail } from 'react-icons/md'
 import { FaFacebookSquare, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { RxLinkedinLogo } from "react-icons/rx";
+import { Link } from 'react-router'
 
 
 export default function AboutUsPage() {
@@ -101,7 +102,7 @@ export default function AboutUsPage() {
                                         href="https://www.facebook.com/mutasimBillah7"
                                         target='_blank'
                                         className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
-                                       <FaFacebookSquare className='text-blue-500 text-2xl'></FaFacebookSquare>
+                                        <FaFacebookSquare className='text-blue-500 text-2xl'></FaFacebookSquare>
                                     </a>
                                     <a
                                         target='_blank'
@@ -117,6 +118,14 @@ export default function AboutUsPage() {
                                 </div>
                             </div>
                         </div>
+                    </section>
+                    {/* redirect to home */}
+                    <section class="text-center bg-blue-50 p-8 rounded-2xl shadow-inner">
+                        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Ready to Get Started?</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto mb-6">
+                            Join our community and discover all the features our platform.
+                        </p>
+                        <Link to='/home' class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300">Start Your Journey</Link>
                     </section>
                 </div>
             </div>
