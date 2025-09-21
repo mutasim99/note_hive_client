@@ -21,12 +21,12 @@ createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <ToastContainer></ToastContainer>
-          {/* <DrawCursor
+          <DrawCursor
             type='drawAlways'
             strokeColor='#80eeb4'
             strokeWidth={10}
             followEffect={true}
-          ></DrawCursor> */}
+          ></DrawCursor>
           <RouterProvider router={router} defaultTheme="system" storageKey="vite-ui-theme"></RouterProvider>
         </ThemeProvider>
       </QueryClientProvider>
