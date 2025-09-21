@@ -1,9 +1,14 @@
 import UseAuth from '@/Hooks/UseAuth';
+import { UserPen } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { FiEdit } from "react-icons/fi";
+import UpdateProfileModal from '../Modal/UpdateProfileModal';
 
 const Clock = () => {
     const [time, setTime] = useState(new Date());
+    const [isOpen, setIsOpen] = useState(false);
     const { user } = UseAuth();
+
 
     useEffect(() => {
         const interval = setInterval(() => setTime(new Date()), 50)
@@ -15,6 +20,10 @@ const Clock = () => {
     const seconds = time.getSeconds();
     const minutes = time.getMinutes() + seconds / 60;
     const hours = (time.getHours() % 12) + minutes / 60;
+
+    const closeModal = () => {
+        return setIsOpen(false)
+    }
     return (
         <div
             className='relative h-28 w-28 md:h-52 md:w-52 rounded-full border-8 border-purple-500 bg-gradient-to-tr from-purple-700 to-pink-500 shadow-lg'
@@ -43,6 +52,16 @@ const Clock = () => {
             >
 
             </div>
+            <div className='absolute bottom-2 right-3 md:bottom-5 md:right-6' title='edit profile'>
+                <button className='cursor-pointer' onClick={() => setIsOpen(true)}>
+                    <UserPen color='#4ca8d6' size={28} st></UserPen>
+                </button>
+            </div>
+            <UpdateProfileModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                closeModal={closeModal}
+            ></UpdateProfileModal>
         </div>
     );
 };

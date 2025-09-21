@@ -184,7 +184,7 @@ const Register = () => {
                                 {/* select semester */}
                                 <div className="space-y-2">
                                     <Label className="text-gray-900 dark:text-gray-200">
-                                        Institution
+                                        Semester
                                     </Label>
                                     <select
                                         name='semester'

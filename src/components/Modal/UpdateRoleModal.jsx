@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
-import { Button } from '../ui/button';
 
 const UpdateRoleModal = ({ isOpen, setIsOpen, closeModal, selectUser, handleUpdateRole }) => {
     const [selectedRole, setSelectedRole] = useState(selectUser?.role || "user");
