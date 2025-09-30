@@ -1,12 +1,82 @@
-# React + Vite
+# 📘 Note Hive  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Note Hive** is a modern platform created for engineering students to easily **find, share, and manage academic notes** based on **subject** and **semester**.  
+It features **role-based access** (User, Contributor, Admin) and integrates **AI-powered assistance with Gemini** to help students study smarter.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features  
 
-## Expanding the ESLint configuration
+- 🔑 **Authentication & Security**
+  - Firebase authentication for secure login  
+  - JWT-based session handling  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📚 **Notes by Subject & Semester**
+  - Organized academic resources for engineering students  
+
+- 👥 **Role-Based Access**
+  - **User** → Browse & download notes  
+  - **Contributor** → Upload and manage PDF notes  
+  - **Admin** → Manage users, approve content, and oversee the platform  
+
+- 🤖 **AI Assistant (Gemini)**
+  - AI-powered **note summarization**  
+  - **Question answering** based on uploaded notes  
+  - Helps students quickly grasp important concepts  
+
+- 🎨 **Modern UI**
+  - Built with **React.js**, **TailwindCSS**, and **shadcn/ui**  
+
+- ⚡ **Robust Backend**
+  - Powered by **Node.js**, **Express.js**, and **MongoDB**  
+
+---
+
+## 🖼️ Screenshots  
+
+### 🔹 User Dashboard  
+Users can browse notes by semester & subject.  
+![User Dashboard](./screenShots/screenshoot-1.jpg)  
+
+### 🔹 Contributor Panel  
+Contributors can upload and manage PDF notes.  
+![Contributor Upload](./screenshots/contributor-upload.png)  
+
+### 🔹 Admin Dashboard  
+Admins manage users, approve content, and oversee the platform.  
+![Admin Dashboard](./screenshots/admin-dashboard.png)  
+
+### 🔹 Gemini AI Assistant  
+Students can summarize notes, ask questions, and get instant AI-powered help.  
+![AI Assistant](./screenshots/ai-assistant.png)  
+
+---
+
+## 🛠️ Tech Stack  
+
+**Frontend:**  
+- React.js  
+- TailwindCSS  
+- shadcn/ui  
+
+**Backend:**  
+- Node.js  
+- Express.js  
+- MongoDB  
+
+**Authentication & Security:**  
+- Firebase Authentication  
+- JSON Web Tokens (JWT)  
+
+**AI Integration:**  
+- Gemini API (for summarization & Q&A)  
+
+---
+
+## 🚀 Getting Started  
+
+### 1️⃣ Clone the repository  
+```bash
+git clone https://github.com/your-username/note-hive.git
+cd note-hive
+
