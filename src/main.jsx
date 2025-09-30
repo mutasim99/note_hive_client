@@ -11,8 +11,6 @@ import {
 } from '@tanstack/react-query'
 import { ToastContainer } from 'react-toastify'
 import AuthProvider from './Provider/AuthProvider'
-import DrawCursor from './components/nurui/draw-cursor'
-
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
@@ -21,12 +19,6 @@ createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <ToastContainer></ToastContainer>
-          <DrawCursor
-            type='drawAlways'
-            strokeColor='#80eeb4'
-            strokeWidth={10}
-            followEffect={true}
-          ></DrawCursor>
           <RouterProvider router={router} defaultTheme="system" storageKey="vite-ui-theme"></RouterProvider>
         </ThemeProvider>
       </QueryClientProvider>
