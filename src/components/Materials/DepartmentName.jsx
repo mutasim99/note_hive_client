@@ -16,7 +16,7 @@ const DepartmentName = () => {
     }, [axiosSecure, semester])
 
     return (
-        <div className='pt-24 flex items-center justify-center gap-16'>
+        <div className='pt-5 flex items-center justify-center gap-16'>
             {departmentName?.map((dept, index) => <DepartmentCard
                 key={index}
                 dept={dept}

@@ -15,7 +15,7 @@ const Navbar = () => {
         signOutUser();
     }
     return (
-        <div className='fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4  shadow'>
+        <div className=' top-0 left-0 w-full  flex justify-between items-center px-6 py-4'>
             <Link to='/' className='cursor-pointer flex items-center gap-2'>
                 <img
                     className='h-14 w-16 aspect-square object-cover'

@@ -16,7 +16,7 @@ const SubjectName = () => {
     })
 
     return (
-        <div className='max-w-11/12 mx-auto pt-24'>
+        <div className='max-w-11/12 mx-auto pt-5'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8'>
                 {SubjectName.map((sub, index) => <SubjectNameCard
                     key={index}

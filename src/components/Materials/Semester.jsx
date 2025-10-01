@@ -14,7 +14,7 @@ const Semester = () => {
     })
 
     return (
-        <div className='pt-24 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 max-w-11/12 mx-auto'>
+        <div className='pt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 max-w-11/12 mx-auto'>
             {
                 semesters.map(semester => <SemesterNameCard
                     key={semester.semester}
